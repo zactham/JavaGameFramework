@@ -12,29 +12,14 @@ import javax.swing.*;
 public class MainCode extends JPanel implements KeyListener
 {
 
-	private boolean runAgain = true;
-	public final int max = 100;
-	public int[] randomNumbers = new int[max];// makes 20 randomNumbers 
-
-	private int totalRounds = -2;// total turns, everytime a circle gets colored
 	private int score = 0;
-	boolean square1 = false;
-	boolean square2 = false;
-	boolean square3 = false;
-	boolean square4 = false;
-	boolean square5 = false;
-	boolean square6 = false;
-	boolean square7 = false;
-	boolean square8 = false;
-	boolean square9 = false;
-
 	int counter = 1;
+
+	boolean end;
+
 	boolean scored = false;
 
 	int round = 0;
-
-	int highlightedCircle = -1;
-
 
 	private boolean soundPlaying = true;
 
@@ -42,7 +27,7 @@ public class MainCode extends JPanel implements KeyListener
 
 
 	public MyTimer timer;
-	public int turnTime = 2500;
+
 
 	public JFrame restart;
 	public JFrame gameOver;
@@ -57,47 +42,23 @@ public class MainCode extends JPanel implements KeyListener
 		// Register for mouse events on the panel
 		addKeyListener(this);
 
-
-		runAgain = true;
-
-		randomNumbers = new int[max];// makes 20 randomNumbers 
-
-		totalRounds = -2;// total turns, everytime a circle gets colored
-		score = 0;
-		square1 = false;
-		square2 = false;
-		square3 = false;
-		square4 = false;
-		square5 = false;
-		square6 = false;
-		square7 = false;
-		square8 = false;
-		square9 = false;
-
 		counter = 1;
 		scored = false;
 
 		round = 0;
 
-		highlightedCircle = -1;
-
-
 		soundPlaying = true;
 
 		correct = false;
 
-		turnTime = 2500;
-
-
+		boolean end;
 	}
 
 
 
 	public void init() throws InterruptedException
 	{
-
 		// launch game
-	
 		JFrame frame = new JFrame("Sample Frame");
 
 		frame.add(this);
@@ -105,25 +66,24 @@ public class MainCode extends JPanel implements KeyListener
 		frame.setTitle("Game Title");
 
 
-		JOptionPane.showMessageDialog(start, "Use the arrow keys to move the snake around and eat apples");
+		JOptionPane.showMessageDialog(start, "Game Instructions");
 
 
 		//Sets the speed of the game for each mode
 		if (TitleScreen.easy == true)
+		{
 
-			turnTime = 800;
+		}
 
 		if (TitleScreen.med == true)
+		{
 
-			turnTime = 500;
+		}
 
 		if (TitleScreen.hard == true)
+		{
 
-			turnTime = 400;
-
-		timer = new MyTimer(turnTime);
-
-		timer.start();
+		}
 
 		try
 
@@ -162,18 +122,6 @@ public class MainCode extends JPanel implements KeyListener
 
 	public void MainLoop() // throws InterruptedException
 	{
-		
-		if (round < max && runAgain)
-		{
-			if (timer.isExpired())
-			{
-				timer.start();
-				setColors();
-				boardTurn(round);
-				round++;
-			}
-			repaint();
-		}
 
 	}
 
@@ -198,7 +146,7 @@ public class MainCode extends JPanel implements KeyListener
 	public void playInGameMusic() throws InterruptedException
 
 	{
-//		Sound.play("IngameMusic.wav");
+		Sound.play("IngameMusic.wav");
 
 	}
 
@@ -211,12 +159,12 @@ public class MainCode extends JPanel implements KeyListener
 	public void playSoundEffect() throws InterruptedException
 
 	{
-//		Sound.play("SMACK Sound Effect.wav");
+		//Sound.play("SMACK Sound Effect.wav");
 	}
 
 
 
-	
+
 
 	// Centers the window
 	public void centerWindow()
@@ -239,27 +187,15 @@ public class MainCode extends JPanel implements KeyListener
 
 	public void setColors()
 	{
-		totalRounds++;
-	}
 
-	public void rounds()
-	{
-		runAgain = true;
 	}
 
 
-	// returns true if next turn
-	public void boardTurn(int round)
-	{
-		scored = false;
-
-		gameEnding();
-	}
 
 	public void gameEnding()
 	{
 		//When the game ends
-		if (round==max-1)
+		if (end)
 		{
 			if (soundPlaying)
 			{
@@ -307,7 +243,7 @@ public class MainCode extends JPanel implements KeyListener
 		// TODO Auto-generated method stub
 		int c = arg0.getKeyCode();
 
-		//Pressing the keys 1 2 3 on the num pad on the right side of the keyboard
+		//Pressing the keys
 		if (c == KeyEvent.VK_NUMPAD1)
 		{
 
