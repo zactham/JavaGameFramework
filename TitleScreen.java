@@ -20,7 +20,7 @@ public class TitleScreen extends JApplet implements KeyListener
 	public static boolean med = false;
 	public static boolean hard = false;
 
-	private SnakeGame board;
+	private MainCode board;
 
 	private ImageIcon titleScreenImage;//image
 
@@ -74,7 +74,7 @@ public class TitleScreen extends JApplet implements KeyListener
 					soundPlaying = false;
 
 
-					board = new SnakeGame();
+					board = new MainCode();
 					try
 					{
 						board.init();
@@ -94,7 +94,7 @@ public class TitleScreen extends JApplet implements KeyListener
 					soundPlaying = false;
 
 
-					board = new SnakeGame();
+					board = new MainCode();
 					try
 					{
 						board.init();
@@ -113,7 +113,7 @@ public class TitleScreen extends JApplet implements KeyListener
 					soundPlaying = false;
 
 
-					board = new SnakeGame();
+					board = new MainCode();
 					try
 					{
 						board.init();
