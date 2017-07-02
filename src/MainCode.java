@@ -94,7 +94,8 @@ public class MainCode extends JPanel implements KeyListener
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		centerWindow();
 		frame.setSize(400, 400);
-
+		frame.setLocationRelativeTo(TitleScreen.theApp);
+		
 		// runs the mainLoop
 		ActionListener timerAction = new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
@@ -213,6 +214,8 @@ public class MainCode extends JPanel implements KeyListener
 	@Override
 	protected void paintComponent(Graphics page)
 	{
+		super.paintComponent(page);		// paint baseclass members too
+		
 		displayScore(page);
 	}
 

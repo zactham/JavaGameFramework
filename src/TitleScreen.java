@@ -19,7 +19,8 @@ public class TitleScreen extends JApplet implements KeyListener
 	public static boolean easy = false;
 	public static boolean med = false;
 	public static boolean hard = false;
-
+	public static TitleScreen theApp;
+	
 	private MainCode board;
 
 	private ImageIcon titleScreenImage;//image
@@ -38,6 +39,8 @@ public class TitleScreen extends JApplet implements KeyListener
 	public void init () 
 	{		
 
+		theApp = this;
+		
 		try
 		{
 			playMusic();
@@ -72,54 +75,8 @@ public class TitleScreen extends JApplet implements KeyListener
 					Sound.audioClip.stop();
 					soundPlaying = false;
 
-
-					board = new MainCode();
-					try
-					{
-						board.init();
-					} catch (InterruptedException e1) 
-					{
-						//	System.out.println(e1);
-					}
-
-				}
-				if (c == KeyEvent.VK_M)
-				{
-					//System.out.println("Medium");
-
-					med = true;
-
-					Sound.audioClip.stop();
-					soundPlaying = false;
-
-
-					board = new MainCode();
-					try
-					{
-						board.init();
-					} catch (InterruptedException e1) 
-					{
-						System.out.println(e1);
-					}
-				}
-				if (c == KeyEvent.VK_H)
-				{
-					//System.out.println("Hard");
-
-					hard = true;
-
-					Sound.audioClip.stop();
-					soundPlaying = false;
-
-
-					board = new MainCode();
-					try
-					{
-						board.init();
-					} catch (InterruptedException e1) 
-					{
-						//System.out.println(e1);
-					}
+					theApp.addMainBoard();
+					
 				}
 			}
 		});
@@ -179,6 +136,18 @@ public class TitleScreen extends JApplet implements KeyListener
 	}
 
 
+	public void addMainBoard()
+	{
+		hideWindow();
+		board = new MainCode();
+		try
+		{
+			board.init();
+		} catch (InterruptedException e1) 
+		{
+			//	System.out.println(e1);
+		}
+	}
 
 
 	public class CloseListener implements ActionListener{
@@ -192,7 +161,14 @@ public class TitleScreen extends JApplet implements KeyListener
 		Sound.play("TitleScreenMusic.wav");
 	}
 
-
+	public void hideWindow()
+	{
+		Container c = getParent();
+		while (c.getParent()!=null) 
+			c = c.getParent();
+		c.setVisible(false);		
+	}
+	
 	//Centers the window
 	public void centerWindow()
 	{
