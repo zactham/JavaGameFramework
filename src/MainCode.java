@@ -19,8 +19,6 @@ public class MainCode extends JPanel implements KeyListener
 
 	boolean scored = false;
 
-	int round = 0;
-
 	private boolean soundPlaying = true;
 
 	public boolean correct = false;
@@ -45,13 +43,9 @@ public class MainCode extends JPanel implements KeyListener
 		counter = 1;
 		scored = false;
 
-		round = 0;
-
 		soundPlaying = true;
 
 		correct = false;
-
-		boolean end;
 	}
 
 
@@ -98,10 +92,8 @@ public class MainCode extends JPanel implements KeyListener
 
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		round = 0;
 		centerWindow();
 		frame.setSize(400, 400);
-		setColors();
 
 		// runs the mainLoop
 		ActionListener timerAction = new ActionListener() {
@@ -184,12 +176,6 @@ public class MainCode extends JPanel implements KeyListener
 			window.setLocationRelativeTo(null);
 		}
 	}
-
-	public void setColors()
-	{
-
-	}
-
 
 
 	public void gameEnding()

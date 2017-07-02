@@ -10,7 +10,12 @@ public class Sound
 
 	public static Clip audioClip;
 
-
+	
+	public static void stop()
+	{
+		audioClip.stop();
+	}
+	
 	public static void play(String audioFilePath)
 	{
 		try
@@ -30,32 +35,6 @@ public class Sound
 		}
 	}
 
-
-	// app entry point
-	public static void main(String[] args) throws InterruptedException
-	{
-		for (int i = 1; i >0; i++ )
-		{
-			
-			
-			//play("TitleScreenMusic.wav");
-
-			
-			
-			
-			
-			
-			
-			// sleep for secs while sound plays
-			Thread.sleep(1000 * 29);
-
-			//Ingame: 4min 5 sec so 245 sec
-			//TitleScreen: 29 sec
-
-			// close sound
-			audioClip.close();
-		}
-	}
 
 }
 

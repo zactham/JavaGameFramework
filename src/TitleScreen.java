@@ -32,7 +32,6 @@ public class TitleScreen extends JApplet implements KeyListener
 
 	//Main Buttons
 	private JFrame help;
-	private JFrame credits;
 
 	private boolean soundPlaying = true;
 
@@ -41,7 +40,7 @@ public class TitleScreen extends JApplet implements KeyListener
 
 		try
 		{
-			playMusicMain();
+			playMusic();
 		}
 		catch(Exception err)
 		{
@@ -159,17 +158,6 @@ public class TitleScreen extends JApplet implements KeyListener
 
 				}
 
-				//Credits
-				if (e.getX() > 770 && e.getX() < 830 && e.getY() > 1 && e.getY() < 14)
-				{
-
-					//	System.out.println("Credits");
-					JOptionPane.showMessageDialog(help,
-							"Created by Zac Thamer and Saumya Shukla");
-
-
-				}
-
 			}
 
 			public void mouseEntered(MouseEvent arg0) {
@@ -204,11 +192,6 @@ public class TitleScreen extends JApplet implements KeyListener
 		Sound.play("TitleScreenMusic.wav");
 	}
 
-	public void playMusicMain() throws InterruptedException
-	{
-		playMusic();
-
-	}
 
 	//Centers the window
 	public void centerWindow()
