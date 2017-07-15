@@ -5,18 +5,19 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.DataLine;
 
+//
+// represents a simple audio clip
+//
 public class Sound
 {
+	private Clip audioClip;
 
-	public static Clip audioClip;
-
+	public Clip getClip() 		{ return audioClip; }
+	public boolean isPlaying() 	{ return audioClip.isRunning(); }
+	public void stop() 			{ audioClip.stop(); }
+	public void resume() 		{ audioClip.start(); }
 	
-	public static void stop()
-	{
-		audioClip.stop();
-	}
-	
-	public static void play(String audioFilePath)
+	public void play(String audioFilePath)
 	{
 		try
 		{
@@ -34,7 +35,6 @@ public class Sound
 			System.out.println("1. " + err);
 		}
 	}
-
 
 }
 

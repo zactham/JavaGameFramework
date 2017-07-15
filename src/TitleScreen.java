@@ -1,6 +1,4 @@
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -10,15 +8,14 @@ import javax.swing.JApplet;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import java.awt.event.KeyListener;
 
 
-public class TitleScreen extends JApplet implements KeyListener
+public class TitleScreen extends JApplet
 {
-
-	public static boolean easy = false;
-	public static boolean med = false;
-	public static boolean hard = false;
+	private Sound sound;
+	private boolean easy = true;
+	private boolean med = false;
+	private boolean hard = false;
 	public static TitleScreen theApp;
 	
 	private MainCode board;
@@ -34,21 +31,11 @@ public class TitleScreen extends JApplet implements KeyListener
 	//Main Buttons
 	private JFrame help;
 
-	private boolean soundPlaying = true;
-
 	public void init () 
 	{		
-
+		sound = new Sound();
 		theApp = this;
-		
-		try
-		{
-			playMusic();
-		}
-		catch(Exception err)
-		{
-
-		}
+		playMusic();
 
 
 		//Adds the image and creates a button out of it
@@ -72,11 +59,8 @@ public class TitleScreen extends JApplet implements KeyListener
 					//System.out.println("Easy");
 
 					easy = true;
-					Sound.audioClip.stop();
-					soundPlaying = false;
-
-					theApp.addMainBoard();
-					
+					sound.stop();
+					addMainBoard();					
 				}
 			}
 		});
@@ -92,15 +76,13 @@ public class TitleScreen extends JApplet implements KeyListener
 				{
 
 					//System.out.println("Music toggle");
-					if (soundPlaying)
+					if (sound.isPlaying())
 					{
-						Sound.audioClip.stop();
-						soundPlaying = false;
+						sound.stop();
 					}
 					else
 					{
-						Sound.audioClip.start();
-						soundPlaying = true;
+						sound.resume();
 					}
 
 				}
@@ -139,26 +121,22 @@ public class TitleScreen extends JApplet implements KeyListener
 	public void addMainBoard()
 	{
 		hideWindow();
+		
+		int level = 1;
+		if (med)
+			level = 2;
+		else
+			if (hard)
+				level = 3;
+		
 		board = new MainCode();
-		try
-		{
-			board.init();
-		} catch (InterruptedException e1) 
-		{
-			//	System.out.println(e1);
-		}
+		board.init(level);
 	}
 
 
-	public class CloseListener implements ActionListener{
-		public void actionPerformed(ActionEvent e) {
-			System.exit(0);
-		}
-	}
-
-	public void playMusic() throws InterruptedException
+	public void playMusic()
 	{
-		Sound.play("TitleScreenMusic.wav");
+		sound.play("TitleScreenMusic.wav");
 	}
 
 	public void hideWindow()
@@ -188,22 +166,5 @@ public class TitleScreen extends JApplet implements KeyListener
 		}
 	}
 
-	@Override
-	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-
-	}
 }
 

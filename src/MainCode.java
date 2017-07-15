@@ -11,25 +11,13 @@ import javax.swing.*;
 
 public class MainCode extends JPanel implements KeyListener
 {
-
+	Sound sound;
 	private int score = 0;
-	int counter = 1;
+	private boolean end;
 
-	boolean end;
-
-	boolean scored = false;
-
-	private boolean soundPlaying = true;
-
-	public boolean correct = false;
-
-
-	public MyTimer timer;
-
-
-	public JFrame restart;
-	public JFrame gameOver;
-	public JFrame start;
+//	private JFrame restart;
+	private JFrame gameOver;
+	private JFrame start;
 
 
 
@@ -39,56 +27,37 @@ public class MainCode extends JPanel implements KeyListener
 		setFocusable(true);
 		// Register for mouse events on the panel
 		addKeyListener(this);
-
-		counter = 1;
-		scored = false;
-
-		soundPlaying = true;
-
-		correct = false;
 	}
 
 
-
-	public void init() throws InterruptedException
+	public void init(int level)
 	{
+		sound = new Sound();
+		
 		// launch game
 		JFrame frame = new JFrame("Sample Frame");
-
 		frame.add(this);
-
 		frame.setTitle("Game Title");
-
 
 		JOptionPane.showMessageDialog(start, "Game Instructions");
 
-
 		//Sets the speed of the game for each mode
-		if (TitleScreen.easy == true)
+		if (level == 1)		// easy
 		{
 
 		}
 
-		if (TitleScreen.med == true)
+		if (level == 2)		// medium
 		{
 
 		}
 
-		if (TitleScreen.hard == true)
+		if (level == 3)		// hard
 		{
 
 		}
 
-		try
-
-		{
-			playMusicMain();
-		}
-
-		catch (Exception err)
-		{
-			//System.out.println("2. " + err);
-		}
+		playMusicMain();
 
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -113,51 +82,21 @@ public class MainCode extends JPanel implements KeyListener
 
 	}
 
-	public void MainLoop() // throws InterruptedException
+	public void MainLoop()
 	{
 
 	}
 
-	public class AL implements ActionListener
-	{
-		public final void actionPerformed(ActionEvent e)
-		{
 
-			if (soundPlaying)
-			{
-				Sound.audioClip.stop();
-				soundPlaying = false;
-			}
-			else
-			{
-				Sound.audioClip.start();
-				soundPlaying = true;
-			}
-		}
+	public void playMusicMain()
+	{
+		sound.play("IngameMusic.wav");
 	}
 
-	public void playInGameMusic() throws InterruptedException
-
+	public void playSoundEffect()
 	{
-		Sound.play("IngameMusic.wav");
-
+		//sound.play("SMACK Sound Effect.wav");
 	}
-
-	public void playMusicMain() throws InterruptedException
-
-	{
-		playInGameMusic();
-	}
-
-	public void playSoundEffect() throws InterruptedException
-
-	{
-		//Sound.play("SMACK Sound Effect.wav");
-	}
-
-
-
-
 
 	// Centers the window
 	public void centerWindow()
@@ -178,26 +117,18 @@ public class MainCode extends JPanel implements KeyListener
 		}
 	}
 
-
 	public void gameEnding()
 	{
 		//When the game ends
 		if (end)
 		{
-			if (soundPlaying)
-			{
-				Sound.audioClip.stop();
-				soundPlaying = false;
-			}
-			else
-			{
-				Sound.audioClip.start();
-				soundPlaying = true;
-			}
 
+			sound.stop();
+			
 			//Game Over Message
 			JOptionPane.showMessageDialog(gameOver,
 					"Click the X and then hit F11 to RESTART or Click the X in the top right to QUIT\n Your Percentage:\t " + score + "%");
+			System.exit(0);
 		}
 	}
 
@@ -250,15 +181,13 @@ public class MainCode extends JPanel implements KeyListener
 
 		//When S is pressed the music stops
 		if (c == KeyEvent.VK_S) {
-			if (soundPlaying)
+			if (sound.isPlaying())
 			{
-				Sound.audioClip.stop();
-				soundPlaying = false;
+				sound.stop();
 			}
 			else
 			{
-				Sound.audioClip.start();
-				soundPlaying = true;
+				sound.resume();
 			}
 		}
 	}
@@ -279,5 +208,6 @@ public class MainCode extends JPanel implements KeyListener
 	{
 		paint(g);
 	}
+
 }
 
