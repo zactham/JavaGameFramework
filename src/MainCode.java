@@ -117,21 +117,34 @@ public class MainCode extends JPanel implements KeyListener
 		}
 	}
 
+	//
+	//When the game ends
+	//
 	public void gameEnding()
 	{
-		//When the game ends
-		if (end)
-		{
 
-			sound.stop();
-			
-			//Game Over Message
-			JOptionPane.showMessageDialog(gameOver,
-					"Click the X and then hit F11 to RESTART or Click the X in the top right to QUIT\n Your Percentage:\t " + score + "%");
+		sound.stop();
+
+		int result = JOptionPane.showConfirmDialog(this, 
+				"Your Score: " + score + " - Play Again?", 
+				"Game Over", JOptionPane.YES_NO_OPTION);
+
+		if (result == JOptionPane.NO_OPTION)
+		{
+			// no
 			System.exit(0);
+		}
+		else
+		{
+			// yes, play again
+			resetGame();
 		}
 	}
 
+	private void resetGame()
+	{
+		
+	}
 
 	public void displayScore(Graphics page)
 	{
