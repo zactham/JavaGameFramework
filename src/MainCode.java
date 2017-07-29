@@ -173,7 +173,6 @@ public class MainCode extends JPanel implements KeyListener
 
 	public void keyPressed(KeyEvent arg0) 
 	{
-		// TODO Auto-generated method stub
 		int c = arg0.getKeyCode();
 
 		//Pressing the keys
@@ -191,24 +190,19 @@ public class MainCode extends JPanel implements KeyListener
 		{
 
 		}
-
-		//When S is pressed the music stops
-		if (c == KeyEvent.VK_S) {
-			if (sound.isPlaying())
-			{
-				sound.stop();
-			}
-			else
-			{
-				sound.resume();
-			}
-		}
 	}
 
 
 
-	public void keyReleased(KeyEvent arg0) {
-		// TODO Auto-generated method stub
+	public void keyReleased(KeyEvent arg0) 
+	{
+		int c = arg0.getKeyCode();
+
+		//When S is pressed the music stops
+		if (c == KeyEvent.VK_S) 
+		{
+			sound.toggle();
+		}
 
 	}
 

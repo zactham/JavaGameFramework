@@ -72,7 +72,7 @@ public class TitleScreen extends JApplet
 				
 				if (c == KeyEvent.VK_S) 
 				{
-					Sound.toggle(sound);
+					sound.toggle();
 				}
 			}
 		});
@@ -83,32 +83,6 @@ public class TitleScreen extends JApplet
 		{
 			public void mouseClicked(MouseEvent e)
 			{
-				//Music Toggle
-				if (e.getX() > 0 && e.getX() < 27 && e.getY() > 745 && e.getY() < 769)
-				{
-
-					//System.out.println("Music toggle");
-					if (sound.isPlaying())
-					{
-						sound.stop();
-					}
-					else
-					{
-						sound.resume();
-					}
-
-				}
-				//Help
-				if (e.getX() > 806 && e.getX() < 830 && e.getY() > 752 && e.getY() < 775)
-				{
-
-					//	System.out.println("Help");
-					JOptionPane.showMessageDialog(help,
-							"Use the 9 num pad on the right side of the keyboard to whack the moles.");
-
-
-				}
-
 			}
 
 			public void mouseEntered(MouseEvent arg0) {
