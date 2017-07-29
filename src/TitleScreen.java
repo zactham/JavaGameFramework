@@ -50,7 +50,7 @@ public class TitleScreen extends JApplet
 		{
 			public void keyPressed(KeyEvent arg0) 
 			{
-				// TODO Auto-generated method stub
+				
 				int c = arg0.getKeyCode();
 
 				//Pressing the keys 1 2 3 on the num pad on the right side of the keyboard
@@ -61,6 +61,18 @@ public class TitleScreen extends JApplet
 					easy = true;
 					sound.stop();
 					addMainBoard();					
+				}
+				
+				
+			}
+			
+			public void keyReleased(KeyEvent arg0)
+			{
+				int c = arg0.getKeyCode();
+				
+				if (c == KeyEvent.VK_S) 
+				{
+					Sound.toggle(sound);
 				}
 			}
 		});
