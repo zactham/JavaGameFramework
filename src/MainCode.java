@@ -84,7 +84,8 @@ public class MainCode extends JPanel implements KeyListener
 
 	public void MainLoop()
 	{
-
+		// updateGame();
+		repaint();
 	}
 
 
@@ -160,6 +161,7 @@ public class MainCode extends JPanel implements KeyListener
 	{
 		super.paintComponent(page);		// paint baseclass members too
 		
+		// drawGame(page);
 		displayScore(page);
 	}
 
@@ -209,11 +211,6 @@ public class MainCode extends JPanel implements KeyListener
 	public void keyTyped(KeyEvent arg0) {
 		// TODO Auto-generated method stub
 
-	}
-
-	public void update(Graphics g) 
-	{
-		paint(g);
 	}
 
 }
