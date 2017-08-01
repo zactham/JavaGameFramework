@@ -17,15 +17,15 @@ public class MyTimer
 	{
 		return ((System.currentTimeMillis() - this.start) > this.delay);
 	}
-
-	public long getDelay()
-	{
-		return delay;
-	}
 	
 	public void setDelay(long d)
 	{
 		delay = d;
+	}
+
+	public long getDelay()
+	{
+		return delay;
 	}
 }
 
