@@ -95,7 +95,7 @@ public class MainCode extends JPanel implements KeyListener
 
 	public void playMusicMain()
 	{
-		sound.play("IngameMusic.wav");
+		//sound.play("IngameMusic.wav");
 	}
 
 	public void playSoundEffect()
@@ -157,7 +157,7 @@ public class MainCode extends JPanel implements KeyListener
 		page.setColor(Color.black);
 		page.setFont(new Font("Comic Sans MS", Font.PLAIN, 50));
 		page.drawString("SCORE: ", scorex, scorey);
-		page.drawString(Integer.toString(score), 275, 350);
+		page.drawString(Integer.toString(score), scorex+190, scorey);
 	}
 
 	@Override
