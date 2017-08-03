@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Window;
@@ -65,7 +66,7 @@ public class MainCode extends JPanel implements KeyListener
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		centerWindow();
-		frame.setSize(gameSize, gameSize);
+		setPreferredSize(new Dimension(gameSize, gameSize));
 		frame.setLocationRelativeTo(TitleScreen.theApp);
 		
 		// runs the mainLoop
