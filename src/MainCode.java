@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Window;
@@ -36,6 +37,8 @@ public class MainCode extends JPanel implements KeyListener
 	public void init(int level)
 	{
 		sound = new Sound();
+
+		setPreferredSize(new Dimension(gameSize, gameSize));
 		
 		// launch game
 		JFrame frame = new JFrame("Sample Frame");
@@ -65,7 +68,6 @@ public class MainCode extends JPanel implements KeyListener
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		centerWindow();
-		frame.setSize(gameSize, gameSize);
 		frame.setLocationRelativeTo(TitleScreen.theApp);
 		
 		// runs the mainLoop
@@ -94,7 +96,7 @@ public class MainCode extends JPanel implements KeyListener
 
 	public void playMusicMain()
 	{
-		sound.play("IngameMusic.wav");
+		//sound.play("IngameMusic.wav");
 	}
 
 	public void playSoundEffect()
@@ -155,8 +157,7 @@ public class MainCode extends JPanel implements KeyListener
 		//Displays the Score
 		page.setColor(Color.black);
 		page.setFont(new Font("Comic Sans MS", Font.PLAIN, 50));
-		page.drawString("SCORE: ", scorex, scorey);
-		page.drawString(Integer.toString(score), 275, 350);
+		page.drawString("SCORE: " + Integer.toString(score), scorex, scorey);
 	}
 
 	@Override
