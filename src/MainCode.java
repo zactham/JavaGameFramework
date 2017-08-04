@@ -37,7 +37,9 @@ public class MainCode extends JPanel implements KeyListener
 	public void init(int level)
 	{
 		sound = new Sound();
-		
+
+		setPreferredSize(new Dimension(gameSize, gameSize));
+
 		// launch game
 		JFrame frame = new JFrame("Sample Frame");
 		frame.add(this);
@@ -66,7 +68,6 @@ public class MainCode extends JPanel implements KeyListener
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		centerWindow();
-		setPreferredSize(new Dimension(gameSize, gameSize));
 		frame.setLocationRelativeTo(TitleScreen.theApp);
 		
 		// runs the mainLoop
@@ -156,8 +157,7 @@ public class MainCode extends JPanel implements KeyListener
 		//Displays the Score
 		page.setColor(Color.black);
 		page.setFont(new Font("Comic Sans MS", Font.PLAIN, 50));
-		page.drawString("SCORE: ", scorex, scorey);
-		page.drawString(Integer.toString(score), scorex+190, scorey);
+		page.drawString("SCORE: " + Integer.toString(score), scorex, scorey);
 	}
 
 	@Override
