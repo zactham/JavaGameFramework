@@ -27,6 +27,14 @@ public class Sound
 		audioClip.start(); 
 	}
 
+	public void loop(boolean play)
+	{
+		if(play)
+			audioClip.loop(Clip.LOOP_CONTINUOUSLY);
+		else if (!play)
+			audioClip.stop();
+	}
+
 	public void play(String audioFilePath)
 	{
 		try
@@ -45,7 +53,7 @@ public class Sound
 			System.out.println("1. " + err);
 		}
 	}
-	
+
 	public void toggle()
 	{
 		if (isPlaying())
