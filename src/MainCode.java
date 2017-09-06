@@ -156,7 +156,7 @@ public class MainCode extends JPanel implements KeyListener
 	{
 		//Displays the Score
 		page.setColor(Color.black);
-		page.setFont(new Font("Comic Sans MS", Font.PLAIN, 50));
+		page.setFont(new Font("Comic Sans MS", Font.PLAIN, gameSize/20));
 		page.drawString("SCORE: " + Integer.toString(score), scorex, scorey);
 	}
 
