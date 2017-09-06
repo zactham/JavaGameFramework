@@ -17,12 +17,14 @@ public class MainCode extends JPanel implements KeyListener
 	private boolean end;
 
 //	private JFrame restart;
-	private JFrame gameOver;
 	private JFrame start;
 
 	private final int gameSize = 1000;
 	private final int scorex = gameSize/5;
 	private final int scorey = gameSize-120;
+	
+	private boolean gameOver = false;
+	private int lives = 3;
 
 
 	// Constructor
@@ -91,6 +93,12 @@ public class MainCode extends JPanel implements KeyListener
 	{
 		// updateGame();
 		repaint();
+		
+		if(lives <1)
+		{
+				gameOver = true;
+				gameEnding();
+		}
 	}
 
 
@@ -149,7 +157,7 @@ public class MainCode extends JPanel implements KeyListener
 
 	private void resetGame()
 	{
-		
+		gameOver = false;
 	}
 
 	public void displayScore(Graphics page)
